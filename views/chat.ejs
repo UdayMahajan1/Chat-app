@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Chat away!</title>
+  <link rel="stylesheet" href="/css/chat.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <!-- the popup message  -->
+
+  <div class="alert alert-info alert-dismissible fade in hide">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    A new user just joined the chat !
+  </div>
+  <!-- -->
+  <h1 style="text-align: center">
+    <%= roomName %>
+  </h1>
+  <ul id="messages">
+    <!-- messages are appended here  -->
+  </ul>
+  <form id="form" action="">
+    <input id="input" autocomplete="off" /><button>Send</button>
+  </form>
+  <div class="col-md-6">
+    <div class="border border-secondary rounded" style="display: inline-block">
+      <ul id="onlineUsers" class="list-group list-group-flush border border-secondary rounded">
+        <!-- the online users list  -->
+      </ul>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript" src="/js/chat.js"></script>
+</body>
+
+</html>

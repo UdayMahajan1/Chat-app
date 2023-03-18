@@ -12,7 +12,7 @@ socket.on('Online Users', (html) => {
   $('#onlineUsers').empty();
   html.forEach((item) => {
     $('#onlineUsers').append(item);
-  }); 
+  });
 });
 
 let timeout = null;
@@ -38,22 +38,37 @@ form.addEventListener('submit', function (e) {
   }
 });
 
+$("#log-out").on('click', () => {
+  socket.emit('log out request');
+  fetch('/logOut', {
+    method: 'POST',
+    mode: 'cors',
+    redirect: 'follow'
+  })
+    .then(response => {
+      if(response.redirected) {
+        window.location.replace(response.url);
+      }
+    })
+    .catch(err => console.log(err));
+});
+
 socket.on('Welcome', (msg) => {
   console.log(msg);
   $(".alert").removeClass("hide");
   setTimeout(function () {
     $('.alert').fadeOut(1000);
-    setTimeout(function () {
-      $('.alert').addClass("hide");
-    }, 1500);
-  }, 5000);
+  }, 4000);
+  setTimeout(() => {
+    $('.alert').addClass("hide");
+  }, 1000);
 });
 
 socket.on('is typing', (user) => {
   $('#input').attr('placeholder', `${user} is typing...`);
 });
 
-socket.on('done typing', ()=>{
+socket.on('done typing', () => {
   $('#input').removeAttr('placeholder');
 });
 

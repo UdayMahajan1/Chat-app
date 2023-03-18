@@ -11,4 +11,8 @@ router.post('/', (req, res) => {
     res.render('chat', { roomName: roomName });
 });
 
+router.post('/logOut', (req,res) => {
+    res.redirect('/');
+});
+
 module.exports = router;

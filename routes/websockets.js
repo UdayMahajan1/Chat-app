@@ -55,6 +55,10 @@ function createWebSocketServer(server) {
             socket.broadcast.to(roomName).emit('done typing');
         });
 
+        socket.on('log out request', () => {
+            socket.disconnect();
+            console.log(`${socket.id} has disconnected`, roomSockets);
+        });
     });
 
     return io;

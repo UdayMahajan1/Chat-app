@@ -9,7 +9,10 @@ var form = document.getElementById('form');
 var input = document.getElementById('input');
 
 socket.on('Online Users', (html) => {
-  $('#onlineUsers').append(html);
+  $('#onlineUsers').empty();
+  html.forEach((item) => {
+    $('#onlineUsers').append(item);
+  }); 
 });
 
 let timeout = null;
@@ -36,9 +39,13 @@ form.addEventListener('submit', function (e) {
 });
 
 socket.on('Welcome', (msg) => {
+  console.log(msg);
   $(".alert").removeClass("hide");
   setTimeout(function () {
     $('.alert').fadeOut(1000);
+    setTimeout(function () {
+      $('.alert').addClass("hide");
+    }, 1500);
   }, 5000);
 });
 

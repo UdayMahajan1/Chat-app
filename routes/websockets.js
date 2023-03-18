@@ -21,13 +21,17 @@ function createWebSocketServer(server) {
 
         var roomSockets = io.sockets.adapter.rooms.get(roomName);
 
+        let userList = [];
+
         console.log(roomSockets);
         roomSockets.forEach((roomSocket) => {
             var user = socketUsernameMap.get(roomSocket);
             if(user !== undefined) {
-                io.to(roomName).emit('Online Users', `<li class="list-group-item">${user}</li>`);
+                userList.push(`<li class="list-group-item">${user}</li>`);
             } else {}
         });
+
+        io.to(roomName).emit('Online Users', userList);
 
         socket.on('chat message', async function (message) {
 

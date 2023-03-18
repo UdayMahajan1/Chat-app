@@ -25,19 +25,32 @@
   <h1 style="text-align: center">
     <%= roomName %>
   </h1>
-  <ul id="messages">
-    <!-- messages are appended here  -->
-  </ul>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8">
+        <!-- Chat section -->
+        <div class="card">
+          <div id="messages" class="card-body">
+            <!-- chats go here  -->
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <!-- Online users section -->
+        <div class="card">
+          <div class="card-header">Online Users</div>
+          <ul id="onlineUsers" class="list-group list-group-flush">
+            <!-- the users go here  -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <form id="form" action="">
     <input id="input" autocomplete="off" /><button>Send</button>
   </form>
-  <div class="col-md-6">
-    <div class="border border-secondary rounded" style="display: inline-block">
-      <ul id="onlineUsers" class="list-group list-group-flush border border-secondary rounded">
-        <!-- the online users list  -->
-      </ul>
-    </div>
-  </div>
+
 
   <script src="/socket.io/socket.io.js"></script>
   <script type="text/javascript" src="/js/chat.js"></script>

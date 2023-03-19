@@ -24,12 +24,14 @@ function createWebSocketServer(server) {
         let userList = [];
 
         console.log(roomSockets);
-        roomSockets.forEach((roomSocket) => {
+        roomSockets.forEach(onlineUsers);
+
+        function onlineUsers (roomSocket) {
             var user = socketUsernameMap.get(roomSocket);
             if(user !== undefined) {
                 userList.push(`<li class="list-group-item">${user}</li>`);
             } else {}
-        });
+        }
 
         io.to(roomName).emit('Online Users', userList);
 
@@ -58,6 +60,10 @@ function createWebSocketServer(server) {
         socket.on('log out request', () => {
             socket.disconnect();
             console.log(`${socket.id} has disconnected`, roomSockets);
+            socketUsernameMap.delete(socket.id);
+            userList = [];
+            roomSockets.forEach(onlineUsers);
+            io.to(roomName).emit('Online Users', userList);
         });
     });
 
